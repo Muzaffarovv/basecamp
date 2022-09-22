@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag "glavniy" %>
+
+<body class="body-1">
+
+
+
+  <div class="container">
+    <% if current_user %>
+
+  <h1 class="h1-project">Projects</h1> <br /><br />
+          <div class="row">
+      <% @projects.each do |project| %>
+          <% if current_user.id == project.user.id %>
+
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= project.name %></h5>
+      <p class="card-text"><%= project.description %></p>
+      <%= link_to "Show", project, class:"card-link btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+  </div>
+  </div>
+  <%= render 'projects/form' %>
+
+  <% else %>
+  <h1 class="h1">Basecamp</h1>
+  
+      
+      <div class="button ">
+        <%= link_to "Sign Up!", new_user_registration_path , class:"btn" %>
+
+        <%= link_to "Login", new_user_session_path , class:"btn"%>
+      </div>
+  <% end %>
+
+</div>
+
+
+</body>
